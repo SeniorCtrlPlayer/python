@@ -2,7 +2,7 @@
 #0导入模块,生成模拟数据集
 import tensorflow as tf
 import numpy as np
-BATCH_SIZE = 8
+BATCH_SIZE = 8#表示一次喂入神经网络多少组数据
 seed = 23455
 
 #基于seed产生随机数
