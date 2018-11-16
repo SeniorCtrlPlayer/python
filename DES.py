@@ -116,12 +116,23 @@ fp=[ 39,  7, 47, 15, 55, 23, 63, 31,
      33,  1, 41,  9, 49, 17, 57, 25,
      32,  0, 40,  8, 48, 16, 56, 24]
 
+p=[
+    15, 6,  19, 20,
+    28, 11, 27, 16,
+    0,  14, 22, 25,
+    4,  17, 30, 9,
+    1,  7,  23, 13,
+    31, 26, 2,  8,
+    18, 12, 29, 5,
+    21, 10, 3,  24
+    ]
+
 #将单个字符转换成对应的n位二进制码数组
 def wordToBin(word,n):
     x = ord(word)
     N = [0]*n;
     i = 1
-    while(i<n):
+    while(i<=n):
         N[n-i]=x%2
         x=x//2
         # //代表除法取整，否则自动带上小数点
@@ -141,7 +152,7 @@ def binToStr(array):
 def numberToBin(number,n):
     N = [0]*n;
     i=1;
-    while(i<n):
+    while(i<=n):
         N[n-i]=number%2
         number=number//2
         i=i+1
@@ -177,7 +188,6 @@ print('密钥的二进制数组位：',bin_Key)
 key_plus=[]
 for x in pc_1:
     key_plus.append(bin_Key[x])
-#print('经过一轮pc_1的密钥：',key_plus)
 
 # CD[0]代表C0或者D0，CD[0][0]代表C0。。。
 C=[[]]*17
@@ -217,14 +227,14 @@ def zip(arr,i):
 
 # 扩展函数
 def EX(R,K):
-    p=[]
+    s=[]
     E_R=convert(R,expansion)
     ER_xor_K=xor(E_R,K)
     #print(len(ER_xor_K),ER_xor_K)
     for i in range(0,8):
-        p=p+zip(ER_xor_K[i*6:i*6+6],i)
+        s=s+zip(ER_xor_K[i*6:i*6+6],i)
         # print(p)
-    return p
+    return convert(s,p)
 
 # 对明文进行将加密
 Plaintext = input("请输入8个字符的明文: ");
